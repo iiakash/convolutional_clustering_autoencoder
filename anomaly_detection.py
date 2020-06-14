@@ -899,33 +899,4 @@ class AnomalyDetection():
             plt.title('Activation Map {}'.format(i+1))
             plt.legend()
             plt.savefig('TSNE Plot Channel {}.png'.format(i+1), dpi = 300)
-            plt.show()
-                
-        
-        
-        
-    
-    
-            
-            
-                
-
-
-
-            
-            
-            
-                
-            
-            
-            
-        
-
-    
-        
-        
-        
-        
-        
-        
-    
+            plt.show()  
