@@ -5,7 +5,7 @@ The reopository contains deep convolutional clustering autoencoer method impleme
 ## Dependencies
 
 | Framework | Version |
------------------------
+|---------------------|
 | Numpy     | 1.18.5  |
 | Pandas    | 1.0.4   |
 | PyTorch   | 1.4.0   |
