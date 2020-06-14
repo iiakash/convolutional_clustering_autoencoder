@@ -5,7 +5,7 @@ The reopository contains deep convolutional clustering autoencoer method impleme
 ## Dependencies
 
 | Framework | Version |
-|---------------------|
+|-----------|---------|
 | Numpy     | 1.18.5  |
 | Pandas    | 1.0.4   |
 | PyTorch   | 1.4.0   |
@@ -13,6 +13,8 @@ The reopository contains deep convolutional clustering autoencoer method impleme
 | Matplotlib| 3.2.1   |
 
 The code was written and tested on Python 3.7
+
+## Methodology Discussion
 
 Although anomaly detection is a highly researched topic with diverse research areas and application domains, the application of this domain on industrial process data has still not been thoroughly explored. The application of technologies like Internet of Things(IoT) have paved the way to solve complex industrial problems with the help of large amounts of information. Industrial systems are now intertwined with each other constantly sharing data among them. Vast quantities of this data is unlabeled, and it is a mammoth task to label the data manually. If there are anomalies present in the data it is even harder to find and label the anomalous samples. The objective of unsupervised anomaly detection solves this problem by partitioning the input data into distinct normal and anomalous regions.
 
@@ -25,6 +27,4 @@ The encoder part of the autoencoder is used to map a low dimensional feature rep
 ![](images/1st%20tsne.jpg)
 
 The latent representation of the activation maps are evaluated in terms of their accuracy. The activation maps produced from the clustering kernels showed better results in terms of clustering accuracy and separating the data into two distinct regions. During the joint optimization the decoder is constantly attached so that the reconstruction error is not ignored. This method of including the decoder throughout the training process avoids trivial solutions by keeping track of the reconstruction loss, and updating the network parameters accordingly.
-
-![](images/am%20108%2053%20te.jpg)
 
