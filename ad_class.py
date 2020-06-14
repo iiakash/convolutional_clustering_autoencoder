@@ -4,7 +4,7 @@ import torch.nn as nn
 import torch.nn.functional as F
 from torch.utils.data import Dataset, DataLoader
 
-import helpers
+import functions
 import networks
 import dataset
 
@@ -42,7 +42,7 @@ class AnomalyDetection():
                 self.cluster_update_interval, self.no_of_clustering_channels,
                 self.n_epochs, self.no_of_pretrain_epochs, self.batch_size, self.lr, self.alpha, self.downsampling_step,self.sequence_length, self.kernel_size)
         
-        helpers.createFolder(self.path)
+        functions.createFolder(self.path)
         
     def load_bultmann_data(self, normalize = True):
         
@@ -156,7 +156,7 @@ class AnomalyDetection():
                 
                     #updating the weights of the clustering friendly channels wrt combined loss
                 
-                    bottleneck_layer = helpers.get_bottleneck_name(self.network)
+                    bottleneck_layer = functions.get_bottleneck_name(self.network)
             
                     #train_reporter.print_grads(network)
                 
@@ -217,7 +217,7 @@ class AnomalyDetection():
                 
                     for i in range(no_of_channels):
                         channel = embeddings[:,i,:].numpy()
-                        choice_cluster, initial_centers, cluster_ass = helpers.kmeansalter(channel, self.n_clusters)
+                        choice_cluster, initial_centers, cluster_ass = functions.kmeansalter(channel, self.n_clusters)
                         cluster_label_pre.append(torch.from_numpy(choice_cluster).unsqueeze(0).transpose(1,0))
                         cluster_label = torch.cat(cluster_label_pre, dim = 1)
                         centers_pre.append(torch.from_numpy(initial_centers).unsqueeze(0).transpose(1,0))
@@ -226,8 +226,8 @@ class AnomalyDetection():
                         center_designation = torch.cat(center_designation_pre, dim = 1)
                         
                     
-                    batched_center_designation = list(helpers.divide_batches(center_designation, self.batch_size))
-                    center_distances, ranks_of_center_distances = helpers.rank_channels(centers)
+                    batched_center_designation = list(functions.divide_batches(center_designation, self.batch_size))
+                    center_distances, ranks_of_center_distances = functions.rank_channels(centers)
                     
                 
             print('Epoch : {}/{} Network Loss : {} Clustering Loss : {} Total Loss : {}'.format(epoch+1, 
@@ -242,7 +242,7 @@ class AnomalyDetection():
         list_of_losses.append(list_of_clustering_loss)
         list_of_losses.append(list_of_total_loss)
         end = time.time()
-        hours, minutes, seconds = helpers.timer(since, end)
+        hours, minutes, seconds = functions.timer(since, end)
         print("Time taken {:0>2}:{:0>2}:{:05.2f}".format(int(hours),int(minutes),seconds))
         return self.network, optimizer, list_of_network_loss, list_of_clustering_loss, list_of_total_loss, list_of_losses, embeddings, labels, list_of_centers, list_of_ranks_of_center_distances, list_of_center_distances
     
@@ -326,7 +326,7 @@ class AnomalyDetection():
                 
                     #updating the weights of the clustering friendly channels wrt combined loss
                 
-                    bottleneck_layer = helpers.get_bottleneck_name(self.network)
+                    bottleneck_layer = functionsfunctions.get_bottleneck_name(self.network)
             
                     #train_reporter.print_grads(network)
                 
@@ -388,7 +388,7 @@ class AnomalyDetection():
                 
                     for i in range(no_of_channels):
                         channel = embeddings[:,i,:].numpy()
-                        choice_cluster, initial_centers, cluster_ass = helpers.kmeansalter(channel, self.n_clusters)
+                        choice_cluster, initial_centers, cluster_ass = functions.kmeansalter(channel, self.n_clusters)
                         cluster_label_pre.append(torch.from_numpy(choice_cluster).unsqueeze(0).transpose(1,0))
                         cluster_label = torch.cat(cluster_label_pre, dim = 1)
                         centers_pre.append(torch.from_numpy(initial_centers).unsqueeze(0).transpose(1,0))
@@ -396,10 +396,10 @@ class AnomalyDetection():
                         center_designation_pre.append(cluster_ass.unsqueeze(0).transpose(1,0))
                         center_designation = torch.cat(center_designation_pre, dim = 1)
                     
-                    batched_center_designation = list(helpers.divide_batches(center_designation, self.batch_size))
-                    center_distances, ranks_of_center_distances = helpers.rank_channels(centers)
+                    batched_center_designation = list(functions.divide_batches(center_designation, self.batch_size))
+                    center_distances, ranks_of_center_distances = functions.rank_channels(centers)
                     end = time.time()
-                    hours, minutes, seconds = helpers.timer(since, end)
+                    hours, minutes, seconds = functions.timer(since, end)
                     print("Time taken {:0>2}:{:0>2}:{:05.2f}".format(int(hours),int(minutes),seconds))
                 
             print('Epoch : {}/{} Network Loss : {} Clustering Loss : {} Total Loss : {}'.format(epoch+1, 
@@ -464,7 +464,7 @@ class AnomalyDetection():
             cm = sklearn.metrics.confusion_matrix(labels_true.flatten(), ch_labels_pred)
             list_of_cm.append(cm)
             
-            acc = helpers.metrics.acc(labels_true.flatten(), ch_labels_pred)
+            acc = functions.metrics.acc(labels_true.flatten(), ch_labels_pred)
             list_of_acc.append(acc)
             
             #accuracy_score = sklearn.metrics.accuracy_score(labels_true, labels_pred)
