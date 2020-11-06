@@ -1,6 +1,6 @@
 # Deep Convolutional Clustering Autoencoder
 
-## The reopository contains deep convolutional clustering autoencoer method implementation with PyTorch
+## The reopository contains deep convolutional clustering autoencoder method implementation with PyTorch
 
 ## Overview
 
@@ -8,7 +8,11 @@ The application of technologies like Internet of Things(IoT) have paved the way 
 
 ## Data
 
-The data used for this project is provided by Bültmann GmbH. The dataset contains high frequency sensor data from a metal peeling machine. Due to the sensitive nature of the data used in this project, the data is not provided in this repository. The data is considered exclusive for this project and can not be used for any other purpose.
+The first dataset used for this project is provided by Bültmann GmbH. The dataset contains high frequency sensor data from a metal peeling machine. Due to the sensitive nature of the data used in this project, the data is not provided in this repository. The data is considered exclusive for this project and can not be used for any other purpose.
+
+The second dataset used for this project is from the Tennessee Eastman Process. The Tennessee Eastman Process is a simulation of a chemical plant which is based on an actual process in the Eastman Chemical Company located in Tennessee, USA. The Tennessee Eastman process was originally created by Downs and Vogel as a process control challenge problem. 
+
+The generated dataset from the Tennessee Eastman Process consists of 22 continuous process measurements, 19 component analysis measurements, and 12 manipulated variables. The dataset consists of 21 pre-programmed faults, among which 16 are known fault cases, and 5 fault cases are unknown. Both the training and testing datasets include a total of 52 observed variables. The training dataset consists of 22 different simulation runs, and simulation 0 is fault free. In our case, this simulation is considered as our normal data samples. Simulations 1 to 21 were generated for 21 fault cases, and in our case all of these 21 simulations are considered as anomalous data samples. Similarly, the testing data set contains 22 different simulations, the first one being the normal case, and the rest are simulations for different fault cases. All of the 22 data sets have 960 observations each, and 52 observed variables.
 
 ## Dependencies
 
